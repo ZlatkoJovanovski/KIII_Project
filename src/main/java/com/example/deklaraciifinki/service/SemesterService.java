@@ -58,7 +58,6 @@ public class SemesterService {
                     indicesToRemove.add(d.getId());
                 }
             }
-            System.out.println(indicesToRemove.size());
             for (long index : indicesToRemove) {
                 s.getDeclarations().remove(declarationRepository.findById(index).orElseThrow(Exception::new));
             }

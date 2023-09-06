@@ -53,6 +53,7 @@ public class SemesterController {
 
     @PostMapping("/import/report/{id}")
     public String importData(@PathVariable(name = "id") Long id, @RequestParam(name = "file") MultipartFile file) throws Exception {
+        System.out.println(id);
         semesterService.importData(id, file);
         return "redirect:/";
     }

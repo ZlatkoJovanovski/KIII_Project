@@ -39,6 +39,20 @@
             padding-top: 10px;
         }
 
+        .custom-file-upload {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+        }
+
+        .custom-file-upload input[type="file"] {
+            position: absolute;
+            font-size: 100px;
+            right: 0;
+            top: 0;
+            opacity: 0;
+        }
+
 
     </style>
 </head>
@@ -76,12 +90,12 @@
 <div class="container border" th:each="semester : ${semesters}">
     <div class="d-flex justify-content-between">
         <h1 th:text="|${semester.type} ${semester.yearFrom} - ${semester.yearTo}|"></h1>
-        <div class="d-flex">
-            <div style="margin-top: 10px; margin-right: 10px">
-                <button class="btn btn-primary" onclick="openFileInput()">Внеси податоци</button>
-            </div>
-            <form class="custom-form" method="post" th:action="@{'/import/report/{id}' (id = ${semester.id})}" enctype="multipart/form-data" hidden>
-                <input type="file" id="fileInput" name="file" class="btn btn-primary"  style="display: none" onchange="submitForm(this)">
+        <div class="d-flex" >
+            <form class="custom-form" method="post" th:action="@{'/import/report/{id}' (id = ${semester.id})}" enctype="multipart/form-data">
+                <div class="custom-file-upload" style="margin-right: 10px;">
+                    <label for="fileInput" class="btn btn-primary">Внеси податоци</label>
+                    <input type="file" id="fileInput" name="file" onchange="submitForm(this)">
+                </div>
             </form>
             <form class="custom-form" method="get" th:action="@{'/download/report/{id}' (id = ${semester.id})}">
                 <button type="submit" class="btn btn-success">Генерирај извештај</button>
