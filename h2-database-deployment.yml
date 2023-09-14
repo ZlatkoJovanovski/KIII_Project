@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: h2-database-deployment
+spec:
+  replicas: 1  
+  selector:
+    matchLabels:
+      app: deklaracii-finki-app-1
+  template:
+    metadata:
+      labels:
+        app: deklaracii-finki-app-1
+    spec:
+      containers:
+        - name: deklaracii-finki-db-1
+          image: buildo/h2database
+          ports:
+            - containerPort: 1521

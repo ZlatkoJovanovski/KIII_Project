@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: deklaracii-finki-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+    - host: deklaracii.finki.com  
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: deklaracii-finki-service 
+                  number: 80
+          - path: /h2  
+            pathType: Prefix
+            backend:
+              service:
+                name: h2-database-service  
+                  number: 8082  
